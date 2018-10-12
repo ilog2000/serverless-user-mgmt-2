@@ -1,0 +1,30 @@
+{
+  "users": [{
+    "role": "admin",
+    "password_hash": "$2a$10$dZEyu4ZHuSSTA4HKKC1XHerrwdfLdy8a3vPaV3nEZ4EwP39c19qlG",
+    "last_name": "Vader",
+    "active": true,
+    "id": "fae0fb30-c6ec-11e8-9bd5-e358ca4b1f07",
+    "first_name": "Darth",
+    "email": "darth.vader@gmail.com",
+    "picture": "darth-vader.png"
+  }, {
+    "role": "editor",
+    "password_hash": "$2a$10$0xEC2zur.yL7I9mBi8q7H.ouEja8TR2JVUoUDVSfSJgfxeYOOCbZi",
+    "last_name": "Organa",
+    "active": true,
+    "id": "fb012d60-c6ec-11e8-9bd5-e358ca4b1f07",
+    "first_name": "Leia",
+    "email": "leia.organa@outlook.com",
+    "picture": "leia-organa.png"
+  }, {
+    "role": "developer",
+    "password_hash": "$2a$10$lAAmH3giErf0eZD/PmwwOenZhvFwmnvVd03/.jvKpys8KymGGRg0e",
+    "last_name": "Skywalker",
+    "active": true,
+    "id": "faf2fc90-c6ec-11e8-9bd5-e358ca4b1f07",
+    "first_name": "Luke",
+    "email": "luke.skywalker@yahoo.com",
+    "picture": "luke-skywalker.png"
+  }]
+}

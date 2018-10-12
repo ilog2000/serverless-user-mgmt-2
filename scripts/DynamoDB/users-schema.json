@@ -1,0 +1,21 @@
+{
+  "TableName": "users",
+    "KeySchema": [
+      { "AttributeName": "id", "KeyType": "HASH" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "id", "AttributeType": "S" },
+      { "AttributeName": "email", "AttributeType": "S" }
+    ],
+    "GlobalSecondaryIndexes": [
+      {
+        "IndexName": "emailIndex",
+        "KeySchema": [
+          { "AttributeName": "email", "KeyType": "HASH" }
+        ],
+        "Projection": { "ProjectionType": "ALL" },
+        "ProvisionedThroughput": { "ReadCapacityUnits": 1, "WriteCapacityUnits": 1 }
+      }
+    ],
+    "ProvisionedThroughput": { "ReadCapacityUnits": 5, "WriteCapacityUnits": 5 }
+}
