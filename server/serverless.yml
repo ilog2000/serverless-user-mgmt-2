@@ -191,3 +191,7 @@ functions:
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
+
+custom:
+  serverless-offline:
+    port: 5000
