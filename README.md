@@ -10,7 +10,7 @@ Back end:
 * DynamoDB
 
 Front end:
-* mithril.js
+* react.js
 
 ## Running locally
 
@@ -34,7 +34,7 @@ yarn dev-lambda
 ```
 The `serverless-offline` plugin is executed behind the scene.
 
-The following command will start a development server for the front end (just ensure that `client/config.js` BASE_API_URL points to `http://localhost:3000`; if not - modify and run `yarn build` to re-build front end distribution):
+The following command will start a development server for the front end (just ensure that `client/src/config.js` API_URL points to `http://localhost:3000`; if not - modify and run `yarn build` to re-build front end distribution):
 ```
 yarn serve
 ```

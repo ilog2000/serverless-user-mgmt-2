@@ -1,5 +1,5 @@
-# @baseURL = http://localhost:3000
-@baseURL = https://8rocxh3rq6.execute-api.us-east-1.amazonaws.com/dev
+@baseURL = http://localhost:3000
+# @baseURL = https://8rocxh3rq6.execute-api.us-east-1.amazonaws.com/dev
 @email = darth.vader@gmail.com
 @password = anakin
 @id = fae0fb30-c6ec-11e8-9bd5-e358ca4b1f07
@@ -32,7 +32,7 @@ Accept: application/json
 POST {{baseURL}}/refreshtoken HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{login.response.body.$.data.token}}
+Authorization: Bearer {{login.response.body.$.token}}
 
 {}
 
@@ -45,19 +45,19 @@ Authorization: Bearer {{login.response.body.$.data.token}}
 GET {{baseURL}}/api/v1/users HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{login.response.body.$.data.token}}
+Authorization: Bearer {{login.response.body.$.token}}
 
 ### User
 GET {{baseURL}}/api/v1/users/{{id2}} HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{login.response.body.$.data.token}}
+Authorization: Bearer {{login.response.body.$.token}}
 
 ### Create
 POST {{baseURL}}/api/v1/users HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{login.response.body.$.data.token}}
+Authorization: Bearer {{login.response.body.$.token}}
 
 {
 	"id":"{{id2}}",
@@ -74,7 +74,7 @@ Authorization: Bearer {{login.response.body.$.data.token}}
 PUT {{baseURL}}/api/v1/users/{{id2}} HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{login.response.body.$.data.token}}
+Authorization: Bearer {{login.response.body.$.token}}
 
 {
 	"id":"{{id2}}",
@@ -91,6 +91,6 @@ Authorization: Bearer {{login.response.body.$.data.token}}
 DELETE {{baseURL}}/api/v1/users/{{id2}} HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{login.response.body.$.data.token}}
+Authorization: Bearer {{login.response.body.$.token}}
 
 ###

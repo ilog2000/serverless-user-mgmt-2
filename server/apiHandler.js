@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Repository = require('./db/repository.js');
-const util = require('./util.js');
+const Repository = require('./db/repository');
+const { successResponse, errorResponse } = require('./util');
 
 const repo = new Repository('users');
 
@@ -44,47 +44,47 @@ async function authorized(event, context) {
 
 module.exports.getUsers = async (event, context) => {
   if (!await authorized(event, context)) {
-    return util.errorResponse(401, 'Not authenticated');
+    return errorResponse(401, 'Not authenticated');
   }
 
   if (!context.user || !context.user.permissions.includes('R')) {
-    return util.errorResponse(403, 'Forbidden');
+    return errorResponse(403, 'Forbidden');
   }
 
   try {
     const result = await repo.getAll();
-    return util.successResponse(result);
+    return successResponse(result);
   } catch (err) {
-    return util.errorResponse(500, err.message);
+    return errorResponse(500, err.message);
   }
 };
 
 module.exports.getUser = async (event, context) => {
   if (!await authorized(event, context)) {
-    return util.errorResponse(401, 'Not authenticated');
+    return errorResponse(401, 'Not authenticated');
   }
 
   if (!context.user || !context.user.permissions.includes('R')) {
-    return util.errorResponse(403, 'Forbidden');
+    return errorResponse(403, 'Forbidden');
   }
   
   const id = event.pathParameters.id;
 
   try {
     const result = await repo.getById(id);
-    return util.successResponse(result);
+    return successResponse(result);
   } catch (err) {
-    return util.errorResponse(500, err.message);
+    return errorResponse(500, err.message);
   }
 };
 
 module.exports.postUser = async (event, context) => {
   if (!await authorized(event, context)) {
-    return util.errorResponse(401, 'Not authenticated');
+    return errorResponse(401, 'Not authenticated');
   }
 
   if (!context.user || !context.user.permissions.includes('C')) {
-    return util.errorResponse(403, 'Forbidden');
+    return errorResponse(403, 'Forbidden');
   }
   
   const user = JSON.parse(event.body);
@@ -97,21 +97,21 @@ module.exports.postUser = async (event, context) => {
     user.picture = `${process.env.IMG_URL}/${user.picture}`;
 
     const result = await repo.put(user);
-    return util.successResponse(result);
+    return successResponse(result);
   } catch (err) {
-    return util.errorResponse(500, err.message);
+    return errorResponse(500, err.message);
   }
 };
 
 module.exports.putUser = async (event, context) => {
   if (!await authorized(event, context)) {
-    return util.errorResponse(401, 'Not authenticated');
+    return errorResponse(401, 'Not authenticated');
   }
 
   const id = event.pathParameters.id;
 
   if (!context.user || (!context.user.permissions.includes('U') && context.user.id !== id)) {
-    return util.errorResponse(403, 'Forbidden');
+    return errorResponse(403, 'Forbidden');
   }
   
   const user = JSON.parse(event.body);
@@ -122,27 +122,27 @@ module.exports.putUser = async (event, context) => {
     const names = { '#role': 'role' };
 
     const result = await repo.update(id, expression, values, names);
-    return util.successResponse(result);
+    return successResponse(result);
   } catch (err) {
-    return util.errorResponse(500, err.message);
+    return errorResponse(500, err.message);
   }
 };
 
 module.exports.deleteUser = async (event, context) => {
   if (!await authorized(event, context)) {
-    return util.errorResponse(401, 'Not authenticated');
+    return errorResponse(401, 'Not authenticated');
   }
 
   if (!context.user || !context.user.permissions.includes('D')) {
-    return util.errorResponse(403, 'Forbidden');
+    return errorResponse(403, 'Forbidden');
   }
 
   const id = event.pathParameters.id;
 
   try {
     const result = await repo.delete(id);
-    return util.successResponse(result);
+    return successResponse(result);
   } catch (err) {
-    return util.errorResponse(500, err.message);
+    return errorResponse(500, err.message);
   }
 };

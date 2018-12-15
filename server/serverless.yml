@@ -72,35 +72,35 @@ provider:
 
 functions:
   ping:
-    handler: server/homeHandler.ping
+    handler: homeHandler.ping
     events:
       - http:
           path: ping
           method: get
           cors: true
   register:
-    handler: server/homeHandler.register
+    handler: homeHandler.register
     events:
       - http:
           path: register
           method: post
           cors: true
   login:
-    handler: server/homeHandler.login
+    handler: homeHandler.login
     events:
       - http:
           path: login
           method: post
           cors: true
   refreshToken:
-    handler: server/homeHandler.refreshToken
+    handler: homeHandler.refreshToken
     events:
       - http:
           path: refreshtoken
           method: post
           cors: true
   changePassword:
-    handler: server/homeHandler.changePassword
+    handler: homeHandler.changePassword
     events:
       - http:
           path: changepassword
@@ -108,35 +108,35 @@ functions:
           cors: true
 
   getUsers:
-    handler: server/apiHandler.getUsers
+    handler: apiHandler.getUsers
     events:
       - http:
           path: api/v1/users
           method: get
           cors: true
   getUser:
-    handler: server/apiHandler.getUser
+    handler: apiHandler.getUser
     events:
       - http:
           path: api/v1/users/{id}
           method: get
           cors: true
   postUser:
-    handler: server/apiHandler.postUser
+    handler: apiHandler.postUser
     events:
       - http:
           path: api/v1/users
           method: post
           cors: true
   putUser:
-    handler: server/apiHandler.putUser
+    handler: apiHandler.putUser
     events:
       - http:
           path: api/v1/users/{id}
           method: put
           cors: true
   deleteUser:
-    handler: server/apiHandler.deleteUser
+    handler: apiHandler.deleteUser
     events:
       - http:
           path: api/v1/users/{id}

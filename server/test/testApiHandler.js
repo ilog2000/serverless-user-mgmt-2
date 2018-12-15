@@ -1,7 +1,7 @@
 require('dotenv').load();
 const chai = require('chai');
-const apiHandler = require('../server/apiHandler.js');
-const homeHandler = require('../server/homeHandler.js');
+const apiHandler = require('../apiHandler.js');
+const homeHandler = require('../homeHandler.js');
 
 const should = chai.should();
 
@@ -11,7 +11,7 @@ describe('api handler', () => {
     const event = { body: JSON.stringify({ email: 'darth.vader@gmail.com', password: 'anakin' }) };
     const response = await homeHandler.login(event);
     const payload = JSON.parse(response.body);
-    token = payload.data.token;
+    token = payload.token;
   });
 
   it('should respond with users to GET /api/v1/users', async () => {
@@ -22,9 +22,8 @@ describe('api handler', () => {
     const response = await apiHandler.getUsers(event, context);
     response.should.have.property('statusCode').equal(200);
     const body = JSON.parse(response.body);
-    body.should.have.property('status').equal('success');
-    body.data.should.have.property('Items');
-    body.data.Items.should.be.an('array');
+    body.should.have.property('Items');
+    body.Items.should.be.an('array');
   });
 
   it('should respond with users to GET /api/v1/users/{id}', async () => {
@@ -36,10 +35,9 @@ describe('api handler', () => {
     const response = await apiHandler.getUser(event, context);
     response.should.have.property('statusCode').equal(200);
     const body = JSON.parse(response.body);
-    body.should.have.property('status').equal('success');
-    body.data.should.have.property('Item');
-    body.data.Item.should.be.an('object');
-    body.data.Item.should.have.property('email').equal('darth.vader@gmail.com');
+    body.should.have.property('Item');
+    body.Item.should.be.an('object');
+    body.Item.should.have.property('email').equal('darth.vader@gmail.com');
   });
 
 });
